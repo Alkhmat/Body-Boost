@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1070485307534",
+    "project_id": "body-boost-ff0aa",
+    "storage_bucket": "body-boost-ff0aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070485307534:android:07efcbc37e3417933c89df",
+        "android_client_info": {
+          "package_name": "com.example.body_boost"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6Pef-vbM6hM6fdq_olOAS_SqIvqr2zG4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
