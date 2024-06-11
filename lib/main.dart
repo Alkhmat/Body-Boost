@@ -1,4 +1,5 @@
 import 'package:body_boost/firebase/options/firebase_options.dart';
+import 'package:body_boost/view/start/start_cubit/second_click_cubit.dart';
 
 import 'package:body_boost/view/start/start_pages/home_start.dart';
 import 'package:body_boost/view/start/start_cubit/start_click.dart';
@@ -22,7 +23,10 @@ class BodyBoost extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => ClickCubit(),
+          create: (context) => StartClickCubit(),
+        ),
+        BlocProvider(
+          create: (context) => SecondClickCubit(),
         ),
       ],
       child: const MaterialApp(
