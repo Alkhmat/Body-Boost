@@ -1,7 +1,7 @@
 class CloudGenderModel {
   final String image;
   final String type;
-  final List<SubItem> subItems; // Добавляем субколлекции
+  final List<SubItem> subItems;
 
   CloudGenderModel({
     required this.image,
@@ -20,15 +20,41 @@ class CloudGenderModel {
 }
 
 class SubItem {
-  final String choise;
+  final String choice;
   final String imageUrl;
+  final List<SubSubItem> subSubItems;
 
-  SubItem({required this.choise, required this.imageUrl});
+  SubItem(
+      {required this.choice,
+      required this.imageUrl,
+      required this.subSubItems});
 
-  factory SubItem.fromMap(Map<String, dynamic> map) {
+  factory SubItem.fromMap(
+      Map<String, dynamic> map, List<SubSubItem> subSubItems) {
     return SubItem(
-      choise: map['choise'] as String? ?? '',
+      choice: map['choice'] as String? ?? '',
       imageUrl: map['imageUrl'] as String? ?? '',
+      subSubItems: subSubItems,
+    );
+  }
+}
+
+class SubSubItem {
+  final String levelImage;
+  final String level;
+  final String pushs;
+
+  SubSubItem({
+    required this.levelImage,
+    required this.level,
+    required this.pushs,
+  });
+
+  factory SubSubItem.fromMap(Map<String, dynamic> map) {
+    return SubSubItem(
+      levelImage: map['level_image'] as String? ?? '',
+      level: map['level'] as String? ?? '',
+      pushs: map['pushs'] as String? ?? '',
     );
   }
 }

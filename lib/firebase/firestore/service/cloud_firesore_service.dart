@@ -5,14 +5,22 @@ class FirestoreService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   Future<List<CloudGenderModel>> getCollectionWithSubcollections(
-      String collectionPath, String subcollectionPath) async {
+      String collectionPath,
+      String subcollectionPath,
+      String subsubcollectionPath) async {
     var snapshot = await _db.collection(collectionPath).get();
     var futures = snapshot.docs.map((doc) async {
       var subCollectionSnapshot =
           await doc.reference.collection(subcollectionPath).get();
-      var subItems = subCollectionSnapshot.docs.map((subDoc) {
-        return SubItem.fromMap(subDoc.data());
-      }).toList();
+      var subItems =
+          await Future.wait(subCollectionSnapshot.docs.map((subDoc) async {
+        var subSubCollectionSnapshot =
+            await subDoc.reference.collection(subsubcollectionPath).get();
+        var subSubItems = subSubCollectionSnapshot.docs.map((subSubDoc) {
+          return SubSubItem.fromMap(subSubDoc.data());
+        }).toList();
+        return SubItem.fromMap(subDoc.data(), subSubItems);
+      }).toList());
       return CloudGenderModel.fromMap(doc.data(), subItems);
     }).toList();
 

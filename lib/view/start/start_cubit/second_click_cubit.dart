@@ -1,9 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SecondClickCubit extends Cubit<int> {
-  SecondClickCubit() : super(-1);
+  SecondClickCubit() : super(0); // Use -1 to indicate no selection initially
 
-  void selectItem(int index) {
-    emit(index);
-  }
+  void tapIndex(int index) => emit(index);
 }

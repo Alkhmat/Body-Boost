@@ -1,10 +1,11 @@
 import 'dart:developer';
-import 'package:body_boost/view/start/start_pages/select_choise_start.dart';
+
+import 'package:body_boost/firebase/firestore/service/cloud_firesore_service.dart';
+import 'package:body_boost/firebase/models/cloud_gender_model.dart';
+import 'package:body_boost/view/start/start_cubit/start_click.dart';
+import 'package:body_boost/view/start/start_pages/level_start_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:body_boost/firebase/models/cloud_gender_model.dart';
-import 'package:body_boost/firebase/firestore/service/cloud_firesore_service.dart';
-import 'package:body_boost/view/start/start_cubit/start_click.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeStart extends StatefulWidget {
@@ -26,7 +27,7 @@ class _HomeStartState extends State<HomeStart> {
       backgroundColor: const Color(0xff434343),
       body: FutureBuilder<List<CloudGenderModel>>(
         future: _firestoreService.getCollectionWithSubcollections(
-            'start', 'select_choise'),
+            'start', 'select_choice', 'user_level'),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
@@ -53,7 +54,7 @@ class _HomeStartState extends State<HomeStart> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height: h * 0.6,
+                height: h * 0.65,
                 width: w,
                 child: BlocBuilder<StartClickCubit, int>(
                   builder: (context, state) {
@@ -69,8 +70,8 @@ class _HomeStartState extends State<HomeStart> {
                             },
                             child: AnimatedContainer(
                               duration: const Duration(milliseconds: 260),
-                              height: state == index ? h * 0.6 : h * 0.56,
-                              width: state == index ? w * 0.44 : w * 0.46,
+                              height: state == index ? h * 0.65 : h * 0.6,
+                              width: state == index ? w * 0.46 : w * 0.44,
                               margin: const EdgeInsets.symmetric(horizontal: 8),
                               decoration: BoxDecoration(
                                 image: DecorationImage(
@@ -121,7 +122,7 @@ class _HomeStartState extends State<HomeStart> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SelectChoiceView(data: data),
+                      builder: (context) => LevelStartView(data: data),
                     ),
                   );
                 },

@@ -1,6 +1,5 @@
 import 'package:body_boost/firebase/options/firebase_options.dart';
 import 'package:body_boost/view/start/start_cubit/second_click_cubit.dart';
-
 import 'package:body_boost/view/start/start_pages/home_start.dart';
 import 'package:body_boost/view/start/start_cubit/start_click.dart';
 import 'package:firebase_core/firebase_core.dart';
